@@ -6,17 +6,16 @@ public:
         if (k == 0 || nums.size() <= 1) {
             return false;
         }
-        unordered_multimap<int, int> hash;
+        // use map to store number and index
+        unordered_map<int, int> hash;
         for (int i = 0; i < nums.size(); ++i) {
-            hash.insert({nums[i], i});
-            if (hash.count(nums[i]) > 1) {
-                auto range = hash.equal_range(nums[i]);
-                for (auto start = range.first; start != range.second; ++start) {
-                    if (start->second != i && abs(start->second - i) <= k) {
-                        return true;
-                    }
-                }
+            // check if number exists in map
+            // check i - j <= k and return if true
+            if (hash.count(nums[i]) && i - hash[nums[i]] <= k) {
+                return true;
             }
+            // insert index into the key value nums[i]
+            hash[nums[i]] = i;
         }
         return false;
     }
