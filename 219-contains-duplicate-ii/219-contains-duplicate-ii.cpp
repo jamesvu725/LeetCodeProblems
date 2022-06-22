@@ -11,7 +11,7 @@ public:
         for (int i = 0; i < nums.size(); ++i) {
             // check if number exists in map
             // check i - j <= k and return if true
-            if (hash.count(nums[i]) && i - hash[nums[i]] <= k) {
+            if (hash.find(nums[i]) != hash.end() && i - hash[nums[i]] <= k) {
                 return true;
             }
             // insert index into the key value nums[i]
