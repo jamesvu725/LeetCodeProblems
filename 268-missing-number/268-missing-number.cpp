@@ -31,14 +31,27 @@ public:
         // return -1;
         
         // math approach
-        int sum = 0;
+        // time complexity: O(n), space complexity: O(1)
+        // int sum = 0;
         // total is the summation from 0 to size
-        int total = nums.size() * (nums.size() + 1) / 2;
+        // int total = nums.size() * (nums.size() + 1) / 2;
         // add up sum from nums
-        for (int i: nums) {
-            sum += i;
-        }
+        // for (int i: nums) {
+        //     sum += i;
+        // }
         // answer is missing number from total and sum
-        return total - sum;
+        // return total - sum;
+        
+        // bit manipulation approach
+        // time complexity: O(n), space complexity: O(1)
+        int ans = nums.size();
+        for (int i = 0; i < nums.size(); ++i) {
+            // xor index and value
+            ans ^= i;
+            ans ^= nums[i];
+        }
+        // same number xor equals 0
+        // therefore ans should be the only number not xor
+        return ans;
     }
 };
